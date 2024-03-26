@@ -26,7 +26,7 @@ android {
                 "proguard-rules.pro"
             )
             buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
-            buildConfigField("String", "API_KEY", "\"token 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\"")
+            buildConfigField("String", "API_KEY", "\"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\"")
         }
         debug {
             buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
