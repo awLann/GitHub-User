@@ -4,14 +4,16 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import com.example.githubuser.data.response.GithubResponse
 import com.example.githubuser.data.response.UserResponse
 import com.example.githubuser.data.retrofit.ApiConfig
+import com.example.githubuser.ui.theme.ThemePreferences
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel : ViewModel() {
+class MainViewModel(private val pref: ThemePreferences) : ViewModel() {
 
     companion object {
         private const val TAG = "MainViewModel"
@@ -51,5 +53,9 @@ class MainViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
+    }
+
+    fun getThemeSetting(): LiveData<Boolean> {
+        return pref.getThemeSetting().asLiveData()
     }
 }
