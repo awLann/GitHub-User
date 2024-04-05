@@ -41,7 +41,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val application = FavoriteViewModelFactory.getInstance(this@DetailActivity.application)
-        viewModel = ViewModelProvider(this@DetailActivity, application).get(DetailViewModel::class.java)
+        viewModel = ViewModelProvider(this@DetailActivity, application)[DetailViewModel::class.java]
 
         val user = if (Build.VERSION.SDK_INT >= 33) {
             intent.getParcelableExtra(INTENT_PARCELABLE, UserResponse::class.java)
@@ -54,7 +54,7 @@ class DetailActivity : AppCompatActivity() {
             showLoading(it)
         }
 
-        var currUser = user?.login.toString()
+        val currUser = user?.login.toString()
         viewModel.getUser(currUser)
         viewModel.listDetail.observe(this) {
             showUser(it)
@@ -70,8 +70,12 @@ class DetailActivity : AppCompatActivity() {
             .into(binding.ivAvatar)
         binding.tvName.text = listUser.name
         binding.tvUsername.text = listUser.login
-        binding.tvFollower.text = "${listUser.followers} followers"
-        binding.tvFollowing.text = "${listUser.following} following"
+        binding.tvFollower.text = buildString {
+            append("${listUser.followers} followers")
+        }
+        binding.tvFollowing.text = buildString {
+            append("${listUser.following} following")
+        }
     }
 
     private fun setViewPager(currUser: String) {

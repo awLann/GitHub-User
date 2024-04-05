@@ -20,7 +20,7 @@ class FollowAdapter : ListAdapter<UserResponse, FollowAdapter.ViewHolder>(DIFF_C
         holder.bind(users)
     }
 
-    class ViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(users: UserResponse) {
             Glide.with(itemView.context)
                 .load(users.avatarUrl)

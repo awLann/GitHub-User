@@ -18,7 +18,7 @@ class FavoriteActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val factory = FavoriteViewModelFactory.getInstance(this@FavoriteActivity.application)
-        viewModel = ViewModelProvider(this@FavoriteActivity, factory).get(FavoriteViewModel::class.java)
+        viewModel = ViewModelProvider(this@FavoriteActivity, factory)[FavoriteViewModel::class.java]
 
         showRecyclerList()
 

@@ -29,7 +29,7 @@ class UserAdapter(private val listUser: List<UserResponse>) : ListAdapter<UserRe
         }
     }
 
-    class ViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(users: UserResponse) {
             Glide.with(itemView.context)
                 .load(users.avatarUrl)

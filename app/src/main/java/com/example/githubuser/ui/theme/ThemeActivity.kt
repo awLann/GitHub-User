@@ -1,11 +1,10 @@
 package com.example.githubuser.ui.theme
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.CompoundButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
-import com.example.githubuser.R
 import com.example.githubuser.databinding.ActivityThemeBinding
 import com.example.githubuser.ui.factory.ThemeViewModelFactory
 
@@ -19,7 +18,7 @@ class ThemeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val pref = ThemePreferences.getInstance(application.dataStore)
-        viewModel = ViewModelProvider(this@ThemeActivity, ThemeViewModelFactory(pref)).get(ThemeViewModel::class.java)
+        viewModel = ViewModelProvider(this@ThemeActivity, ThemeViewModelFactory(pref))[ThemeViewModel::class.java]
 
         switchTheme(viewModel)
     }

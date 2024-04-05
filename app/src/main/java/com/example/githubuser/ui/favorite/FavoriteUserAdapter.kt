@@ -13,7 +13,7 @@ import com.example.githubuser.ui.detail.DetailActivity
 class FavoriteUserAdapter: RecyclerView.Adapter<FavoriteUserAdapter.ViewHolder>() {
     private val listUserFavorite = ArrayList<FavoriteUser>()
 
-    class ViewHolder(val binding: ItemUserBinding): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemUserBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: FavoriteUser) {
             Glide.with(itemView.context)
                 .load(item.avatarUrl)
@@ -32,12 +32,12 @@ class FavoriteUserAdapter: RecyclerView.Adapter<FavoriteUserAdapter.ViewHolder>(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): FavoriteUserAdapter.ViewHolder {
+    ): ViewHolder {
         val binding = ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: FavoriteUserAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(listUserFavorite[position])
     }
 

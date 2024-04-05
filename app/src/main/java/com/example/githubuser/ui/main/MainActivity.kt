@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val pref = ThemePreferences.getInstance(application.dataStore)
-        viewModel = ViewModelProvider(this@MainActivity, ThemeViewModelFactory(pref)).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this@MainActivity, ThemeViewModelFactory(pref))[MainViewModel::class.java]
 
         showRecyclerList()
 
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun switchTheme(viewModel: MainViewModel) {
+    private fun switchTheme(viewModel: MainViewModel) {
         viewModel.getThemeSetting().observe(this@MainActivity) { isDarkMode: Boolean ->
             if (isDarkMode) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
